@@ -30,6 +30,8 @@ public class Cookie {
 		return value;
 	}
 	public int getMaxAge() {
+		
+		System.out.println("====张三========");
 		return maxAge;
 	}
 }
