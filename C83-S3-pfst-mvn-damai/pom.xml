@@ -53,13 +53,20 @@
    </dependency>
       
       <!-- https://mvnrepository.com/artifact/com.alipay.sdk/alipay-sdk-java -->
-   <dependency>
-       <groupId>com.alipay.sdk</groupId>
-       <artifactId>alipay-sdk-java</artifactId>
-       <version>3.7.110.ALL</version>
-   </dependency>
+  <dependency>
+      <groupId>com.alipay.sdk</groupId>
+      <artifactId>alipay-sdk-java</artifactId>
+      <version>3.7.110.ALL</version>
+  </dependency>
       
               
+      <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+   <dependency>
+     <!-- 1 添加 mybatis 依赖 -->
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+       <version>3.4.6</version>
+   </dependency>
       
     </dependencies>
 </project>
