@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>会员中心--会员中心</title>
+<link href="css/common.css" rel="stylesheet" type="text/css"/>
+<link href="css/product.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/axios.min.js"></script>
+<script type="text/javascript" src="js/comp.js"></script>
+
+</head>
+<style>
+ #f1{
+    
+    height:500px;
+    font-color:black;
+ }
+ .left{
+    width:180px;
+    height:500px;
+    float:left;
+    font-size:15px;
+   text-align:center;
+    
+    border: 2px solid #f2f2f2;
+ }
+ .right{
+      
+	  border: 2px solid #f2f2f2;
+ 
+    height:100%;
+      padding-left:230px;
+    
+ }
+  li{
+    height:50px;
+  
+  } 
+  td{
+    text-align:center;
+    padding-bottom:5px;
+  }
+ 
+</style>
+<body>
+<div id="header">
+ 	<page-head></page-head>
+ </div>
+ <script type="text/javascript">
+ 	new Vue({el:"#header"});
+ </script>
+ 
+ 	<div class="container member" id="f1" >
+		 
+			<div class="left">
+				<!--      左侧菜单     -->
+				<div id="sidebar">
+				<ul style="padding-top:30px; ">
+					<li><a href="per-member.html" target="right">个人信息浏览</a>
+					 
+					<li><a href="per-membermodify.html" target="right">修改个人信息</a></li>
+					
+					<li><a href="per-addr.html" target="right">收货地址 </a>
+					 
+					<li><a href="per-addradd.html" target="right">添加地址</a></li>
+					
+					<li><a href="per-addrmodify.html" target="right">修改地址</a></li>
+					
+				    <li><a href="per-order.html" target="right">购买记录</a></li>
+					</ul>
+					 
+					 
+					 
+				</div>
+			</div>
+			<div class="right"  style="border:2px solid #f2f2f2;">
+				<div id="content"  >
+				<div class="step step1" id="info" style="font-size: 15px; padding-top:15px" >
+                                   购买记录
+                   
+                </div>
+                 <table  >
+                 <tr >
+                 <th style="width:250px">商品名称</th>
+                 <th style="width:150px">商品图片</th>
+                 <th style="width:100px">购买总计</th>
+                 <th style="width:100px">购买时间</th>
+                 <th>购买数量</th>
+                 </tr>
+                       <tr v-for="o in orderitem">
+                       <td style="width:350px">{{o.pname}}</td>
+                       <td style="width:150px ;margin-left:20px"><img :src="o.image" width="60px" height="60px"  style="display: inline-block;"/></td>
+                       <td style="width:100px">{{o.total}}</td>
+                       <td style="width:100px">{{o.createtime}}</td>
+                       <td style="width:100px">{{o.count}}</td>
+                       </tr>
+                   </table>
+				</div>	
+	<script type="text/javascript">
+      var vue = new Vue({
+         el : "#content",
+         data : {
+       
+         orderitem :{}
+        },
+        created : function() {
+ 		 
+ 			axios.get("Per_OrderServlet.do?op=query")
+ 				.then( (res)=>{
+ 					 
+ 					//this.orders = res.data.orders;
+ 					//console.info(res.data.orders);
+ 					this.orderitem = res.data.orderitem;
+ 					console.info(res.data.orderitem);
+ 				});
+ 			 
+ 		}
+ 		
+ 	}) 
+
+
+	</script>
+			</div>
+		</div> 
+	 
+	 
+<div id="footer">
+ 		<page-foot></page-foot>
+ 	</div>
+ 
+ 	<script type="text/javascript">
+ 		new Vue({el:"#footer"});
+ 	</script>
+</body>
+</html>
