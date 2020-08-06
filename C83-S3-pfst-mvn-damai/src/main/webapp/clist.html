@@ -31,31 +31,31 @@
 							</dt>
 							
 									<dd>
-										<a href="clist.html?csid=1">潮流女装</a>
+										<a href="clist.html?#1&csid=1">潮流女装</a>
 									</dd>
 							
 									<dd>
-										<a href="clist.html?csid=2">初冬羽绒</a>
+										<a href="clist.html?#1&csid=2">初冬羽绒</a>
 									</dd>
 							
 									<dd>
-										<a href="clist.html?csid=3">毛呢大衣</a>
+										<a href="clist.html?#1&csid=3">毛呢大衣</a>
 									</dd>
 							
 									<dd>
-										<a href="clist.html?csid=4">温暖毛衣</a>
+										<a href="clist.html?#1&csid=4">温暖毛衣</a>
 									</dd>
 							
 									<dd>
-										<a href="clist.html?csid=5">精选男装</a>
+										<a href="clist.html?#1&csid=5">精选男装</a>
 									</dd>
 							
 									<dd>
-										<a href="clist.html?csid=6">冬季外套</a>
+										<a href="clist.html?#1&csid=6">冬季外套</a>
 									</dd>
 							
 									<dd>
-										<a href="clist.html?csid=7">羽绒服</a>
+										<a href="clist.html?#1&csid=7">羽绒服</a>
 									</dd>
 							
 						</dl>
@@ -66,27 +66,27 @@
 							</dt>
 							
 									<dd>
-										<a href="clist.html?csid=9">女鞋</a>
+										<a href="clist.html?#2&csid=9">女鞋</a>
 									</dd>
 							
 									<dd>
-										<a href="clist.html?csid=10">短靴</a>
+										<a href="clist.html?#2&csid=10">短靴</a>
 									</dd>
 							
 									<dd>
-										<a href="clist.html?csid=11">男鞋</a>
+										<a href="clist.html?#2&csid=11">男鞋</a>
 									</dd>
 							
 									<dd>
-										<a href="clist.html?csid=12">女包</a>
+										<a href="clist.html?#2&csid=12">女包</a>
 									</dd>
 							
 									<dd>
-										<a href="clist.html?csid=13">男包</a>
+										<a href="clist.html?#2&csid=13">男包</a>
 									</dd>
 							
 									<dd>
-										<a href="clist.html?csid=14">服饰配件</a>
+										<a href="clist.html?#2&csid=14">服饰配件</a>
 									</dd>
 							
 						</dl>
@@ -97,23 +97,23 @@
 							</dt>
 							
 									<dd>
-										<a href="clist.html?csid=15">运动鞋</a>
+										<a href="clist.html?#3&csid=15">运动鞋</a>
 									</dd>
 							
 									<dd>
-										<a href="clist.html?csid=16">运动服</a>
+										<a href="clist.html?#3&csid=16">运动服</a>
 									</dd>
 							
 									<dd>
-										<a href="clist.html?csid=17">户外运动</a>
+										<a href="clist.html?#3&csid=17">户外运动</a>
 									</dd>
 							
 									<dd>
-										<a href="clist.html?csid=18">健身装备</a>
+										<a href="clist.html?#3&csid=18">健身装备</a>
 									</dd>
 							
 									<dd>
-										<a href="clist.html?csid=19">骑行装备</a>
+										<a href="clist.html?#3&csid=19">骑行装备</a>
 									</dd>
 							
 						</dl>
@@ -124,19 +124,19 @@
 							</dt>
 							
 									<dd>
-										<a href="clist.html?csid=20">珠宝首饰</a>
+										<a href="clist.html?#4&csid=20">珠宝首饰</a>
 									</dd>
 							
 									<dd>
-										<a href="clist.html?csid=21">时尚饰品</a>
+										<a href="clist.html?#4&csid=21">时尚饰品</a>
 									</dd>
 							
 									<dd>
-										<a href="clist.html?csid=22">品质手表</a>
+										<a href="clist.html?#4&csid=22">品质手表</a>
 									</dd>
 							
 									<dd>
-										<a href="clist.html?csid=23">眼镜配饰</a>
+										<a href="clist.html?#4&csid=23">眼镜配饰</a>
 									</dd>
 							
 						</dl>
@@ -255,9 +255,11 @@
 		created:
 		function (){
 			  var cid=location.hash.substr(1);
-			 
-			axios.get("product.do?op=categroy&cid="+cid)
+			 var csid=location.hash.substr(8);	
+			
+			axios.get("product.do?op=categroy&cid="+cid+"&csid="+csid)
 				.then((res)=>{
+				 alert(csid);
 					console.info(res.data.list)
 					this.plist = res.data.list;
 					 

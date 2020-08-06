@@ -20,8 +20,19 @@ public class DmProduct {
     private Timestamp createtime;
 
     private Integer cid;
+    
+    private  DmCategory dmcategory;
+    
 
-    public Integer getId() {
+    public DmCategory getDmcategory() {
+		return dmcategory;
+	}
+
+	public void setDmcategory(DmCategory dmcategory) {
+		this.dmcategory = dmcategory;
+	}
+
+	public Integer getId() {
         return id;
     }
 

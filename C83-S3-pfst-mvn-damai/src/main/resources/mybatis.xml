@@ -6,6 +6,12 @@
 <!-- xml有一个唯一的根标签 -->
 <configuration>
 
+   <settings>
+      <setting name="mapUnderscoreToCamelCase" value="false"/>
+      
+   
+   </settings>
+   
    <!-- 数据环境  -->
   <environments default="development">
   
@@ -57,6 +63,16 @@
   
   <!-- 映射文件配置 -->
   <mappers>
-    <mapper resource="Dao/ProductMapper.xml"/>
+  <!-- 注册接口 -->
+  <!-- xml+注解的混合方案，注册时使用xml配置注册 -->
+   <mapper resource="Dao/ProductMapper.xml"/>
+   <!-- <mapper resource="Dao/CategoryMapper.xml"/> -->
+   <mapper resource="Dao/OrderitemMapper.xml"/>
+   <!-- <mapper resource="Dao/OrdersMapper.xml"/> -->
+   <!-- 注册接口  纯注解方式(无xml) -->
+   <mapper class="Dao.DmOrdersMapper" />  
+    <mapper class="Dao.DmCategoryMapper" />
+    <!-- 自动扫描包下的mapper接口 xml也会被扫描到 -->
+    <!--  <package name="Dao"  /> -->
   </mappers>
 </configuration>

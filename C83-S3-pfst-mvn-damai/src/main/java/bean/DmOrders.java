@@ -1,6 +1,7 @@
 package bean;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public class DmOrders {
     private Integer id;
@@ -14,8 +15,20 @@ public class DmOrders {
     private Integer uid;
 
     private Integer aid;
+    
+    private List<DmOrderitem> dmOrderitem;
+     
+    
 
-    public Integer getId() {
+	public List<DmOrderitem> getDmOrderitem() {
+		return dmOrderitem;
+	}
+
+	public void setDmOrderitem(List<DmOrderitem> dmOrderitem) {
+		this.dmOrderitem = dmOrderitem;
+	}
+
+	public Integer getId() {
         return id;
     }
 

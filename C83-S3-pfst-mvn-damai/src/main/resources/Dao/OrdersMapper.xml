@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace 是当前接口的命名空间 -->
+<mapper namespace="Dao.DmOrdersMapper">
+  
+  <resultMap id="rdms" type="bean.DmOrders">
+        
+         
+        <collection property="dmOrderitem"
+                     select="Dao.DmOrderitemMapper.selectById1"
+                     column="id"
+                    >
+        </collection>
+    </resultMap>
+<!-- 
+ 	id 是该select标签的唯一标识
+  	resultType 表示返回的结果映射到的实体类的类型
+ 	 -->
+   
+  <!-- 参数传入格式:  #{实体对象的属性名} -->
+  <select id="selectById" resultMap="rdms">
+   select * from dm_orders where id=#{id}
+  </select>
+
+
+<insert id="insert"  useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+   insert into dm_orders values(null,#{total},now(),#{state},#{uid},#{aid})
+</insert>
+
+<!-- Oracle  
+<insert id="insert"  useGeneratedKeys="true">
+      order="BEFORE"  当前的sql是在insert之前执行还是之后
+    resultType="int"  用于定义返回的主键值的数据类型  
+  
+    
+    <selectKey  keyProperty="id" keyColumn="id" order="BEFORE">
+    select seq_order_id.nextval from dual
+    </selectKey>
+   insert into dm_orders values(null,#{total},now(),#{state},#{uid},#{aid})
+
+</insert>
+-->	 
+<!--Mysql
+<insert id="insert"  useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+   insert into dm_orders values(null,#{total},now(),#{state},#{uid},#{aid})
+</insert>
+-->
+</mapper>

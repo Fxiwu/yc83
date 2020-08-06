@@ -1,6 +1,7 @@
 package web;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.List;
@@ -12,17 +13,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+ 
 
+import Dao.DmCategoryMapper;
+import Dao.DmProductMapper;
 import Dao.ProductDao;
+import bean.DmCategory;
 import po.DmProduct;
 import po.Result;
 import util.DBHelper;
  
 @WebServlet("/product.do")
-public class ProductServlet extends BaseServlet {
+public class ProductServlet extends BaseServlet{
 	private static final long serialVersionUID = 1L;
 	private ProductDao pdao = new ProductDao();
-	
+	 
+	 private SqlSession session;
 	protected void query1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, IllegalAccessException, InvocationTargetException {    
 		String page=request.getParameter("page");
 	    String rows=request.getParameter("rows");
@@ -68,12 +78,37 @@ public class ProductServlet extends BaseServlet {
 	//商品分类查询
 	protected void categroy(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
          String cid=request.getParameter("cid");
+         String csid=request.getParameter("csid");
          System.out.println("cid:"+cid);
-		String sql="select * from dm_product where cid=? limit 0,10";
-       List<?> list=new DBHelper().query(sql,cid);
-       HashMap<String,Object> page=new HashMap();
-       page.put("list",list);
-       print(response,page);
+         System.out.println("csid:"+cid);
+//		String sql="select * from dm_product where cid=? limit 0,10";
+//       List<?> list=new DBHelper().query(sql,cid);
+     
+      
+			 
+				try {
+					// mybatis 配置文件
+					String resource = "mybatis.xml";
+					// 读入配置文件
+					InputStream inputStream = Resources.getResourceAsStream(resource);
+					// 构建会话工厂  ==>  23 设计模式   工厂模式
+					SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+					 session = sqlSessionFactory.openSession();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+//         
+//         DmCategoryMapper mapper=session.getMapper(DmCategoryMapper.class);
+// 	     List< DmCategory> dcList=mapper.selectAll();
+ 	     HashMap<String,Object> page=new HashMap();
+ 	    
+ 	    DmProductMapper mapper=session.getMapper(DmProductMapper.class);
+ 	   int  cids=Integer.parseInt(cid);
+
+  	    System.out.println(   mapper.selectByCids(cids));
+      page.put("list", mapper.selectByCids(cids));
+      print(response,page);
    
 	}
 	

@@ -1,13 +1,32 @@
 package  bean;
 
+import java.util.List;
+
+import com.google.gson.annotations.Expose;
+
 public class DmCategory {
+	@Expose
     private Integer id;
-
+	@Expose
     private String cname;
-
+	@Expose
     private Integer pid;
+	@Expose
+    //当前分类的子类集合
+    private List<DmCategory> children;
+	 
 
-    public Integer getId() {
+   
+
+	public List<DmCategory> getChildren() {
+		return children;
+	}
+
+	public void setChildren(List<DmCategory> children) {
+		this.children = children;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -30,4 +49,9 @@ public class DmCategory {
     public void setPid(Integer pid) {
         this.pid = pid;
     }
+
+	@Override
+	public String toString() {
+		return "[id=" + id + ", cname=" + cname + ", pid=" + pid + ", children=" + children + "]";
+	}
 }
