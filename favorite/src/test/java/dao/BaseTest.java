@@ -48,5 +48,14 @@ public class BaseTest {
 		fb.addFavorite(f);
 	}
 	
+	@Test
+	public void test4() {
+		SqlSession session = MyBatisHelper.openSession();
+		 FavoriteMapper fm=session.getMapper(FavoriteMapper.class);
+		fm.selectByTid(null);
+		fm.selectByTid(1);
+		fm.selectByTid(0);
+	}
+	
 	 
 }

@@ -63,7 +63,9 @@
   
   <!-- 映射文件配置 -->
   <mappers>
-  
-  <package name="dao"/>
+  <mapper  resource="dao/FavoriteMapper.xml"/>
+  <mapper class="dao.TagFavoriteMapper"/>
+  <mapper class="dao.TagMapper"/>
+  <!--  <package name="dao"/>-->
   </mappers>
 </configuration>
