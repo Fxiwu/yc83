@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
@@ -22,4 +24,7 @@ public interface TagMapper {
 
 	@Select("select * from tag where tname=#{tname}")
 	Tag selectByName(String tag);
+	
+	@Select("select * from tag")
+	List<Tag> selectAll();
 }
