@@ -24,7 +24,7 @@ public class QueryTagServlet extends HttpServlet {
 	    TagMapper tm=session.getMapper(TagMapper.class);
         Gson gson=new Gson();
         String json=gson.toJson(tm.selectAll());
-		response.getWriter().append("Served at: ").append(json);
+		response.getWriter().append(json);
 	}
 
 	 

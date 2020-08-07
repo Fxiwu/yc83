@@ -19,8 +19,9 @@ public class TagFavorite implements java.io.Serializable {
 	}
 	@Override
 	public String toString() {
-		return "TagFavorite []";
+		return "TagFavorite [tid=" + tid + ", fid=" + fid + "]";
 	}
+	 
  
 	
 }
