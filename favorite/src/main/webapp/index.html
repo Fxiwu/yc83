@@ -12,10 +12,7 @@
 	<script type="text/javascript" src="js/axios.min.js"></script>
 	<script type="text/javascript" src="js/vue.min.js"></script>
 	<script type="text/javascript">
-<!--	function add(){
-		window.open ('fav.do?op=toAdd', 'newwindow', 
-		'height=300, width=400, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
-	}-->
+ 
 	</script>
   </head>
   <body>
@@ -55,7 +52,7 @@
 					
 					<tr>
 						<td>
-							<a style="font-weight:bold;" href="fav.do?op=toCloud">云图</a>
+							<a style="font-weight:bold;" href="#" @click="cloud()">云图</a>
 						</td>
 					</tr>
 				</table>
@@ -77,8 +74,15 @@
 					<div style="color:green;font-size:14px;">
 						http://{{f.furl}}
 					</div>
-				</div>	
+					
+					 				</div>	
 				
+				 <div v-for="ta in tag">
+				
+					    <a href="#"  :style="fontstyle">{{ta.tname}}</a>  
+					   
+					  
+					</div>
 				 
 				
 			 
@@ -97,7 +101,11 @@
 	    		//左边的分类数组
 	    		tags:[],
 	    		//右边的链接数组
-	    		favs:[]
+	    		favs:[],
+	    		tag:[],
+	    		fontstyle:{
+	    			fontSize:""
+	    		}
 	    	},
 	    	//启动时查询所有的链接
 	    	created(){
@@ -111,6 +119,13 @@
 	    			axios.get("queryFavs.do?tid="+tid).then(res=>{
 	    				this.favs=res.data;
 	    			})
+	    		},
+	    		cloud(){
+	    			
+	    			 this.tag=this.tags;
+	    			 this.fontstyle.fontSize=this.tag[0].tcount*10+'px';
+	    			 alert(this.fontstyle.fontSize);
+	    			 console.info(this.tag);
 	    		}
 	    	}
 	    	
