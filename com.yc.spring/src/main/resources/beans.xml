@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="hello" class="com.yc.spring.Hello">  
+     </bean>
+     
+    <bean id="mdao" class="com.yc.spring.dao.MySQLUserDao">  
+     </bean>
+    <bean id="odao" class="com.yc.spring.dao.OracleUserDao">  
+     </bean>
+     
+     <!-- 
+      
+
+
+
+    	Spring 依赖注入(DI) 注入方式有三种
+     	注入: 对象属性初始化设值
+   	1. setter 注入 (set方法注入)
+  		new 对象
+  		对象.setXXX
+    	2.     构造方法注入
+    	3.     接口注入   ==> SpringMVC大量的应用
+     -->
+      <!-- 注入的例子使用的是 实体对象, 实际开发中很少对实体对象设值 -->
+      
+       <bean id="p1" class="com.yc.spring.bean.Person">  
+         <property name="name" value="wusong"></property>
+         
+         <property name="age" value="54"></property>
+         <property name="killed" >
+             <list>
+               <value type="java.lang.String">A</value>
+               <value>B</value>
+               <value type="java.lang.String">C</value>
+           
+             </list>
+          </property>
+          <property name="alisa" value="武松"></property>
+          <property name="Height" value="180"></property>
+    
+     </bean>
+
+<!-- primary="true" 设置当前的bean  是主要的，默认class 方式获取bean -->
+       <bean  class="com.yc.spring.bean.Person" primary="true">  
+          <constructor-arg name="name" value="李逵" index="1"></constructor-arg>
+          <constructor-arg name="age" value="33" index="0"></constructor-arg>
+          <constructor-arg name="alisa" value="黑旋风" index="2"></constructor-arg>
+      
+       </bean>
+       
+       <!-- ref 引用其他的bean -->
+       <bean id="p2"  class="com.yc.spring.bean.Person">  
+            <property name="name" value="吴用"  ></property>
+            <property name="age" value="38"  ></property>
+            <property name="friend" ref="p3"  ></property>
+           
+       </bean>
+       
+        <bean id="p3"  class="com.yc.spring.bean.Person">  
+            <property name="name" value="华荣"></property>
+            
+       </bean>
+       
+       
+       <!-- 工厂方法创建对象 -->
+          <!-- 静态工厂方法配置 -->
+        <bean id="p4"  class="com.yc.spring.bean.Person"
+             factory-method="PersonFactory">  
+            <property name="name" value="王英"></property>
+            
+       </bean>
+       
+           <!-- 实例工厂方法配置 -->
+        <bean id="p5"  class="com.yc.spring.bean.Person"
+             factory-method="PersonFactory1"
+             factory-bean="personFactory">  
+            <property name="name" value="扈三娘"></property>
+            
+       </bean>
+       <bean id="personFactory"  class="com.yc.spring.bean.Person">
+        
+       </bean>
+       <!-- scope="singletion"单例  默认每次getBean的时候，都会使用同一个bean
+        scope="prototype" 原型（多例）模式  每次getBean的时候，都会创建一个新的bean
+            其他作用域:session,request,global
+          prototype  模式每次都会创建新的bean，每次都会调用new or 工厂方法
+       
+        -->
+        <bean  id="hello1" class="com.yc.spring.Hello" scope="prototype">
+        </bean>
+        
+        <!-- lazy-init:懒加载，默认为false，Spring容器在启动时，就会创建所有未配置懒加载的bean
+        prototype 原型模式下默认懒加载
+         -->
+         <bean  id="hello2" class="com.yc.spring.Hello" lazy-init="true">
+          <constructor-arg name="a" value="100"></constructor-arg>
+        </bean>
+        <!-- 生命周期 -->
+        <bean  id="hello3" class="com.yc.spring.Hello" lazy-init="true"
+        init-method="init" destroy-method="destroy"> 
+          <constructor-arg name="a" value="100"></constructor-arg>
+        </bean>
+        
+        <!-- 
+          autowrite="default" 自动加载，根据一些规则自动的从IOC容器获取属性值
+          byName:用属性名从容器中获取指定的id的bean
+          byType:用类名从容器中获取指定类型的bean
+          constructor：根据构造方法参数的类型获取bean
+          default =》no 不自动加载
+         -->
+         <bean id="friend" class="com.yc.spring.bean.Person">
+           <property name="name" value="鲁智深"></property>
+         </bean>
+         <bean id="p7" class="com.yc.spring.bean.Person" autowire="byName">  
+         <property name="name" value="wusong"></property>
+          <property name="age" value="35"></property>
+      </bean>
+        
+</beans>

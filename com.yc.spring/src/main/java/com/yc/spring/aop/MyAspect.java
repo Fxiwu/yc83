@@ -1,0 +1,54 @@
+package com.yc.spring.aop;
+
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+ 
+import org.springframework.stereotype.Component;
+
+@Aspect
+@Component
+public class MyAspect {
+   //
+	//
+	//
+	 
+	@Pointcut(("execution( * com.yc.spring.dao.*Dao.select*(..))"))
+    public void aspect1() {/* 切点方法*/}
+	@Before("aspect1()")
+	//JoinPoint 连接点对象  ==》方法    ==》反射对象
+	public void before(JoinPoint jp) {
+        jp.getArgs();//方法参数
+        jp.getSignature();//方法签名
+        System.out.println("======前置增强=======");
+    }
+	
+	@After("aspect1()")
+	public void after(JoinPoint jp) {
+         
+        System.out.println("======后置增强=======");
+    }
+	
+	@AfterReturning(value="aspect1()",returning = "ret")
+	public void afterReturning(JoinPoint jp,Object ret) {
+         
+        System.out.println("======返回增强==="+ret+"====");
+    }
+	
+	@AfterThrowing(value="aspect1()",throwing ="ret")
+	public void afterThrowing(JoinPoint jp,Exception ret) {
+         
+        System.out.println("======异常增强==="+ret+"====");
+    }
+	
+	@After("execution(* com.yc.spring.Hello.*(..))")
+	public void afterForHello(JoinPoint jp ) {
+         
+        System.out.println("======Hello===后置增强====");
+    }
+	
+}

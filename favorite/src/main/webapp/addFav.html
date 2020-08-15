@@ -32,7 +32,7 @@
 	   
 		methods:{
 			save(){
-			  alert("dejijei");
+			  
   axios.get("addFavs.do?flabel="+this.flabel+"&furl="+this.furl+"&fdesc="+this.fdesc+"&ftags="+this.ftags).then(res=>{
 			   alert(res.data);
 			   if(res.data="收藏成功" ){

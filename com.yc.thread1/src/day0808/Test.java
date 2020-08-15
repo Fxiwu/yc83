@@ -1,14 +1,18 @@
 package day0808;
 
 import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 //只用注解的注解来限定该注解被标注的位置
 @Target(value= {ElementType.METHOD,
-			ElementType.LOCAL_VARIABLE})
+			ElementType.LOCAL_VARIABLE,
+			ElementType.TYPE})
+ @Retention(RetentionPolicy.RUNTIME)
 public @interface Test {
 
-	
+	String value() default"";
 }
 @Target(value= {ElementType.METHOD})
 @interface Select{
