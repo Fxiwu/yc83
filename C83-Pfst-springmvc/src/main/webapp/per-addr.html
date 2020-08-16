@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>会员中心--收货地址</title>
+<link href="css/common.css" rel="stylesheet" type="text/css"/>
+<link href="css/product.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/axios.min.js"></script>
+<script type="text/javascript" src="js/comp.js"></script>
+
+</head>
+<style>
+ #f1{
+    
+    height:450px;
+    font-color:black;
+ }
+ .left{
+    width:180px;
+    height:450px;
+    float:left;
+    font-size:15px;
+   text-align:center;
+    
+    border: 2px solid #f2f2f2;
+ }
+ .right{
+      
+	  border: 2px solid #f2f2f2;
+ 
+    height:100%;
+      padding-left:230px;
+    
+ }
+  li{
+    height:50px;
+  
+  }  
+ 
+</style>
+<body>
+<div id="header">
+ 	<page-head></page-head>
+ </div>
+ <script type="text/javascript">
+ 	new Vue({el:"#header"});
+ </script>
+ 
+ 	<div class="container member" id="f1" >
+		 
+			<div class="left">
+				<!--      左侧菜单     -->
+				<div id="sidebar">
+				<ul style="padding-top:30px; ">
+					<li><a href="per-member.html" target="right">个人信息浏览</a>
+					 
+					<li><a href="per-membermodify.html" target="right">修改个人信息</a></li>
+					
+					<li><a href="per-addr.html" target="right">收货地址 </a>
+			 	 
+					<li><a href="per-addradd.html" target="right">添加地址</a></li>
+					
+					<li><a href="per-addrmodify.html" target="right">修改地址</a></li>
+					
+				    <li><a href="per-order.html" target="right">购买记录</a></li>
+					</ul>
+					 
+					 
+					 
+				</div>
+			</div>
+			<div class="right"  style="border:2px solid #f2f2f2;">
+				<div id="content"  >
+				<h1> </h1>
+				  <div class="step step1" style="font-size: 15px;padding-top:15px" id="addr">
+				收货地址
+				 
+			</div>
+			<div style="padding-top:30px;font-size:18px;"> 
+				<table id="table" width="100%" align="center" >
+					<tbody>
+					<tr>
+						<th>收货地址</th>
+						<th>收货电话</th>
+						<th>收货人</th>
+						<th>是否为默认地址</th>
+						 
+					</tr>
+					
+						<tr  v-for="a in addrlist" align:center style="font-size: 15px; height:30px" >
+						 <td align="center" style="padding-top:30px" >
+						     {{a.addr}}
+						 </td>
+						 
+						 <td align="center" style="padding-top:30px">
+						     {{a.phone}}
+						 </td> 
+						 <td align="center" style="padding-top:30px">
+						     {{a.name}}
+						 </td> 
+						 <td align="center" style="padding-top:30px">
+						     {{a.dft}}
+						 </td> 
+						  
+						</tr>
+			 
+					 
+				
+				</tbody></table>
+				</div>
+				 
+<script>
+  var vue1=new Vue({
+	  el:"#table",
+	  data:{ 
+		  addrlist:{}
+	  },
+	  created : function(){
+			// axios ...
+			axios.get("addr.do?op=query").then(res=>{
+				this.addrlist = res.data;
+				 console.info(this.addrlist);
+				 
+			});
+		} 
+	 
+			 
+		 
+  });
+
+</script>	
+				</div>	
+			</div>
+		</div> 
+	 
+	 
+<div id="footer">
+ 		<page-foot></page-foot>
+ 	</div>
+ 
+ 	<script type="text/javascript">
+ 		new Vue({el:"#footer"});
+ 	</script>
+</body>
+</html>
