@@ -22,12 +22,12 @@ public class JdbcTest {
     
     @Test
     public void test1() {
-    	jdbcTemplate.update("insert into account values(2,'b',1000)");
+    	jdbcTemplate.update("insert into account values(4,'c',1000)");
     }
     
     @Test
     public void test2() {
-      bbiz.register(3,"a",1200);
+      bbiz.register(5,"c",1200);
     }
     @Test
     public void test3() throws BizException {

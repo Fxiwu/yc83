@@ -4,7 +4,7 @@ import org.springframework.stereotype.Repository;
 
 import com.yc.spring.bean.Person;
 
-@Repository("odao")
+@Repository("oudao")
 public class OracleUserDao implements UserDao{
 
 	public int selectUserId(String name) {

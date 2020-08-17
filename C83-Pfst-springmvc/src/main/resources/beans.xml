@@ -15,4 +15,7 @@
    
     <!-- SpringMvc控制器注解驱动标签 -->
     <mvc:annotation-driven></mvc:annotation-driven>
+   
+   <!-- 静态资源的处理的定义html，css -->
+   <mvc:default-servlet-handler/>
 </beans>
