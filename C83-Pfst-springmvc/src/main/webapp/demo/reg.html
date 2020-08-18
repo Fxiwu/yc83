@@ -3,16 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/axios.min.js"></script>
+<style>
+   span{
+      color:red;
+   }
+
+</style>
 </head>
 <body>
-<form action="reg.do">
-用户名：<input name="ename"><br>
-昵称：<input name="cname"><br>
-密码：<input name="password"><br>
-邮箱：<input name="email"><br>
-电话：<input name="phone"><br>
+<form id="ff" action="reg.do">
+用户名：<input name="ename" v-model="user.ename"><span id="ename"></span><br>
+昵称：<input name="cname" v-model="user.cname"><span id="cname"></span><br>
+密码：<input name="password" v-model="user.password"><span id="password"></span><br>
+邮箱：<input name="email" v-model="user.email"><span id="email"></span><br>
+电话：<input name="phone" v-model="user.phone"><span id="phone"></span><br>
 性别：<input name="sex"><br>
-   <button>提交</button>
+   <button @click="reg" type="button">提交</button>
 </form>
+<script type="text/javascript">
+    var vue=new Vue({
+    	el:"#ff",
+    	data:{
+    		user:{}
+    	},
+        methods:{
+        	reg(){
+        		axios.get("reg.do",
+        				{params:this.user}
+        		).then(res=>{
+        			 for(var e of res.data.data){
+        				//获取报错字段对应的审判对象
+        				 var span =document.getElementById(e.field);
+        				//设置span的内部文本标签
+        				 span.innerText=e.defaultMessage;
+        		 	}
+        			 //修改后，报错信息消除
+        		 
+        		});
+        	}
+        }	
+    });
+
+</script>
 </body>
 </html>
