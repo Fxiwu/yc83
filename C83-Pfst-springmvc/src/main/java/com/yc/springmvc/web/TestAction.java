@@ -75,11 +75,8 @@ public class TestAction {
 	 */
 	@RequestMapping("**/servlet")
 
-	public String servlet(HttpServletRequest request,
-			HttpServletResponse response,
-			HttpSession session,
-			InputStream in,
-			OutputStream out) {
+	public String servlet(HttpServletRequest request,HttpServletResponse response,
+			HttpSession session,InputStream in,OutputStream out) {
 		return  "request"+request+"<br>"
 			+"response"+response+"<br>"
 			+"session"+session+"<br>"

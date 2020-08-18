@@ -18,4 +18,13 @@
    
    <!-- 静态资源的处理的定义html，css -->
    <mvc:default-servlet-handler/>
+<!--  location="被映射的路径，工程外的路径" mapping="映射后的路径，工程内部的路径"-->
+    <mvc:resources location="file:/E:/apache-tomcat-8.5.54-windows-x64/apache-tomcat-8.5.54/webapps/photo/images/fulls/" mapping="/photo/**"></mvc:resources>
+
+    <!-- 配置文件上传解析器 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        
+        <!-- 最大上传文件的大小 -->
+        <property name="maxUploadSize" value="10000000"></property>
+    </bean>
 </beans>

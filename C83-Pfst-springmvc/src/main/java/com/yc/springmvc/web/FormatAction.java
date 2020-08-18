@@ -1,0 +1,16 @@
+package com.yc.springmvc.web;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.yc.damaibean.DmOrders;
+@RestController()
+@RequestMapping("demo")
+public class FormatAction {
+    @RequestMapping("add")
+	public DmOrders addOrder(DmOrders dos) {
+		System.out.println(dos.getDate());
+    	  return dos;
+	}
+}

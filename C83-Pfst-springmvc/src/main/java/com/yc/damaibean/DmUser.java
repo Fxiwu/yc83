@@ -2,6 +2,13 @@ package  com.yc.damaibean;
 
 import java.sql.Timestamp;
 
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
+ 
 public class DmUser {
     @Override
 	public String toString() {
@@ -9,17 +16,26 @@ public class DmUser {
 				+ email + ", phone=" + phone + ", sex=" + sex + ", state=" + state + ", createtime=" + createtime + "]";
 	}
 
-	private Integer id;
+   	private Integer id;
+   	
+     @NotEmpty(message = "账号不能为空")
+    @Length(min=4,max=20,message = "账号长度必须为4~20个字符")
+   private String ename;
+     
+    @NotEmpty(message = "昵称不能为空")
+    @Length(min=2,max=20,message = "昵称长度必须为2~20个字符")
+     private String cname;
 
-    private String ename;
+    @NotEmpty(message = "密码不能为空")
+    @Length(min=6,max=12,message = "密码长度必须为6~12个字符")
+     private String password;
 
-    private String cname;
-
-    private String password;
-
+    @Email
     private String email;
 
-    private String phone;
+    @NotEmpty(message = "电话不能为空")
+    @Pattern(regexp = "\\d{11}",message = "电话号码必须为11位数字")
+     private String phone;
 
     private String sex;
 
