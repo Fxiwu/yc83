@@ -1,0 +1,258 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>大麦商城--新手指南</title>
+<link href="css/slider.css" rel="stylesheet" type="text/css"/>
+<link href="css/common.css" rel="stylesheet" type="text/css"/>
+<link href="css/index.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/axios.min.js"></script>
+<script type="text/javascript" src="js/comp.js"></script>
+
+<style>
+  .box {
+            width: 100%;
+            height: 600px;
+            
+            margin: 20px auto;
+            overflow: hidden;
+        }
+        p{
+            float:left;
+              width:90px;
+              height:50px;
+              text-align:center;
+              font-size:16px;
+              background-color:#F0F0F0;
+              padding-top:30px;
+             margin-left:90px;
+             cursor: pointer;
+        }
+ span { 
+            display: none;
+            width:100%;
+            height:600px;
+             
+            text-align: center;
+            font: 15px/15px "simsun";
+            padding-top:100px;
+        }
+.show {
+            display: block;
+      }
+.con{
+
+    width:99%;
+    height:300px;
+      border: 2px solid #75CD83;
+       
+}
+ .right{
+       
+       
+       width:440px;
+       height:260px;
+       float:right;
+       text-align:left;
+        margin-top:50px;
+        
+        }
+ .left{
+          
+        width:450px;
+       height:260px;
+          float:left;
+           text-align:left;
+          margin-left:25px;
+            margin-top:50px;
+        }
+  .aleft{
+           float:left;
+            font-size:16px;
+        }
+  .aright {
+           float:left;
+           font-size:16px;
+        } 
+         .current {
+         
+            background-color: #75CD83;
+        }
+    
+</style>
+  
+</head>
+<body>
+
+ <div id="header">
+ 	<page-head></page-head>
+ </div>
+ <script type="text/javascript">
+ 	new Vue({el:"#header"});
+ </script>
+ 
+<div id="indexdiv" class="container index">
+		<div style="color: #666;font-size: 18px;margin-top:15px">购物指南</div> 
+	<div class="box">
+	<script>
+        window.onload = function () {
+            //需求：鼠标放到上面的li上，li本身变色(添加类)，对应的span也显示出来(添加类);
+            //思路：1.点亮上面的盒子。   2.利用索引值显示下面的盒子。
+
+            var liArr = document.getElementsByTagName("p");
+            var spanArr = document.getElementsByTagName("span");
+
+            for(var i=0;i<liArr.length;i++){
+                //绑定索引值（新增一个自定义属性：index属性）
+                liArr[i].index = i;
+                liArr[i].onmouseover = function () {
+
+                    //1.点亮上面的盒子。   2.利用索引值显示下面的盒子。(排他思想)
+                    for(var j=0;j<liArr.length;j++){
+                        liArr[j].className = "";
+                        spanArr[j].className = "";
+                    }
+                    this.className = "current";
+                    spanArr[this.index].className = "show"; //【重要代码】
+                }
+            }
+        }
+    </script> 
+    
+        <p class="current"> 挑选商品 </p>
+        
+         <p>提交订单</p>
+        <p>确认付款</p>
+        <p>收货</p>
+        <p>评价</p>
+    
+   
+    <span class="show">
+      
+     <h4 style="float:left">
+          挑选商品相关帮助</h4>
+       </br>
+       </br>
+       <div class="con"> 
+     <div class="left"> 
+     
+     <a href=""  class="aleft">•如何注册大麦账号？</a></br> </br></br>
+      <a href=""  class="aleft">•如何购买下单？</a></br> </br></br>
+          <a href=""  class="aleft">•大麦购物流程图</a></br> </br></br>
+           <a href=""  class="aleft">•页面显示有货的商品，为什么下单之后会显示无货呢？</a></br></br> </br>
+            <a href=""  class="aleft">•在加入购物车后，是不是该商品已经被我预定了？</a></br></br> </br>
+     
+       </div >
+    <div class="right">
+    <a href=" "  class="aright">•如何购买下单？</a> </br></br></br> 
+     <a href=" "  class="aright">•可以拨打客服热线订购商品吗？</a></br></br></br>
+      <a href=" "  class="aright">•大麦在线交易保障服务</a></br></br></br>
+      <a href=" "  class="aright">•预定商品什么时候可以到货？</a></br></br></br>
+	</div>						 
+										
+       </div>  
+    </span>
+      
+    <span class="show">
+    
+     <h4 style="float:left">
+         提交订单相关帮助</h4>
+         </br> 
+         </br>
+          <div class="con"> 
+     <div class="left"> 
+     <a href=""  class="aleft">•我刚刚注册了账户，如何提交订单？</a></br></br></br>
+       <a href=""  class="aleft">•商品页面有满减活动，下单后金额为何没有变化？</a></br></br></br>
+        <a href=""  class="aleft">•为什么我的订单总是无法提交成功？</a></br></br></br>
+         <a href=""  class="aleft">•我的收货地址支不支持211配送？</a></br></br></br>
+         
+     
+    </div >
+    <div class="right">
+    <a href=" "  class="aright">•如何填写收货地址？</a>  </br></br></br>
+     <a href=" "  class="aright">•为什么收货地址里面没有我的地区所在的街道？</a></br></br></br>
+      <a href=" "  class="aright">•如何查看购物车中的商品？</a></br></br></br>
+ 	</div>						 
+   								
+       </div>  
+    </span>
+    <span class="show">
+    
+     <h4 style="float:left">
+         确认付款相关帮助</h4>
+        </br> 
+        </br>  
+         <div class="con"> 
+     <div class="left"> 
+     <a href=""  class="aleft">•订单已提交成功，如何付款？</a></br></br></br>
+       <a href=""  class="aleft">•可以开发票吗？</a></br></br></br>
+        <a href=""  class="aleft">•电子发票通过什么方式发到顾客手中？</a></br></br></br>
+         <a href=""  class="aleft">•在线支付支持哪些银行卡？</a></br></br></br>
+         
+     
+    </div >
+    <div class="right">
+    <a href=" "  class="aright">•支付方式有哪些？如何支付？</a>  </br></br></br>
+     <a href=" "  class="aright">•了解大麦的发票制度？</a></br></br></br>
+      <a href=" "  class="aright">•能否货到付款？</a></br></br></br>
+ 	</div>						 
+   		</div>		
+    </span>
+     <span class="show">
+      
+     <h4 style="float:left">
+         收货相关帮助</h4>
+         </br> 
+         </br>
+         <div class="con">   
+     <div class="left"> 
+     <a href=""  class="aleft">•付款以后可以当场验收商品吗？</a></br></br></br>
+       <a href=""  class="aleft">•订购的生鲜是否可以拒收？</a></br></br></br>
+        <a href=""  class="aleft">•为什么订单上显示的快递单号查询不到配送信息？</a></br></br></br>
+        
+         
+     
+    </div >
+    <div class="right">
+    <a href=" "  class="aright">•我的订单中显示货物已经到达站点，请问我能到站点取货吗？</a> </br> </br></br>
+     <a href=" "  class="aright">•收到的怎么是空包，里面什么都没有，如何处理？</a></br></br></br>
+      <a href=" "  class="aright">•拒收商品是否会影响账号信誉，是否需要收取运费？</a></br></br></br>
+ 	</div>						 
+   		</div>		
+    </span>
+    <span class="show">
+
+     <h4 style="float:left">
+         评价相关帮助</h4>
+         </br>
+         </br>
+           <div class="con">   
+     <div class="left"> 
+     <a href=""  class="aleft">•如何给商品评价？如何晒单？</a></br></br></br>
+       <a href=""  class="aleft">•大麦如何获得？</a></br></br></br>
+        <a href=""  class="aleft">•评价晒单规则是什么呢？</a></br></br></br>
+         <a href=""  class="aleft">•评价时间有要求吗？</a></br></br></br>
+         
+     
+    </div >
+    <div class="right">
+    <a href=" " class="aright">•我评价了一个商品之后多久能收到京豆？</a> </br></br></br> 
+    <a href=" " class="aright">•如何使用大麦积分？</a></br></br></br>
+    <a href=" " class="aright">•如何修改评价和晒单？</a></br></br></br>
+     <a href=" " class="aright">•评价和晒单删除了后可以恢复吗？</a></br></br></br>
+ 	</div>						 
+   		</div>		
+    </span>
+  
+    </div>
+</div>
+		 
+ <div id="footer">
+ 		<page-foot></page-foot>
+ 	</div>
+ 
+ 	<script type="text/javascript">
+ 		new Vue({el:"#footer"});
+ 	</script>
+</body></html>
