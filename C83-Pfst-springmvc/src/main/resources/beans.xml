@@ -3,12 +3,15 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
  	xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
      http://www.springframework.org/schema/context/spring-context.xsd
      http://www.springframework.org/schema/mvc
-     http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+     http://www.springframework.org/schema/mvc/spring-mvc.xsd
+   http://mybatis.org/schema/mybatis-spring 
+  http://mybatis.org/schema/mybatis-spring.xsd">
     
     <!-- 主键扫描 -->
 <context:component-scan base-package="com.yc.springmvc"></context:component-scan>
@@ -26,5 +29,35 @@
         
         <!-- 最大上传文件的大小 -->
         <property name="maxUploadSize" value="10000000"></property>
+      </bean>
+    <!-- 拦截器定义 -->
+        <mvc:interceptors>
+            <mvc:interceptor>
+            <!-- servlet的url定义 -->
+               <mvc:mapping path="/demo/*.do"/>
+               <mvc:mapping path="/demo/reg.html"/>
+               <mvc:exclude-mapping path="/demo/reg.do"/>
+               <bean class="com.yc.springmvc.web.LoginInterceptor"></bean>
+             </mvc:interceptor>
+         </mvc:interceptors>
+  
+   <!-- 配置数据源 -->
+   <context:property-placeholder location="classpath:jdbc.properties"/>
+   
+   <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
     </bean>
+  
+    <!-- mybatis会话工程bean -->
+         <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+             <property name="dataSource" ref="dataSource" />
+             <property name="mapperLocations" 
+             value="classpath*:com/yc/damai/dao/*.xml"/>      
+              </bean>
+    <!-- 发现映射器   -->
+    <mybatis:scan base-package="com.yc.damai.dao"/>
+   
 </beans>

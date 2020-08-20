@@ -1,4 +1,4 @@
-package com.yc.damaibean;
+package com.yc.damai.po;
 
 import java.sql.Timestamp;
 

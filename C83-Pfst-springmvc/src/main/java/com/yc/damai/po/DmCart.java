@@ -1,12 +1,7 @@
-package com.yc.damaibean;
+package com.yc.damai.po;
 
 public class DmCart {
-    @Override
-	public String toString() {
-		return "DmCart [id=" + id + ", uid=" + uid + ", pid=" + pid + ", count=" + count + "]";
-	}
-
-	private Integer id;
+    private Integer id;
 
     private Integer uid;
 

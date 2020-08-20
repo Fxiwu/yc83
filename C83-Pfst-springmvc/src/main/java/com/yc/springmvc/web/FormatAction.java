@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yc.damaibean.DmOrders;
+import com.yc.damai.bean.DmOrders;
 @RestController()
 @RequestMapping("demo")
 public class FormatAction {

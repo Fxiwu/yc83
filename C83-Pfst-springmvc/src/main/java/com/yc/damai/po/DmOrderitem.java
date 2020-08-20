@@ -1,4 +1,4 @@
-package  com.yc.damaibean;
+package com.yc.damai.po;
 
 public class DmOrderitem {
     private Integer id;
@@ -10,19 +10,8 @@ public class DmOrderitem {
     private Integer pid;
 
     private Integer oid;
-    
-    //订单明细记录的商品信息的对象
-    private DmProduct dmProduct;
 
-    public DmProduct getDmProduct() {
-		return dmProduct;
-	}
-
-	public void setDmProduct(DmProduct dmProduct) {
-		this.dmProduct = dmProduct;
-	}
-
-	public Integer getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -61,6 +50,4 @@ public class DmOrderitem {
     public void setOid(Integer oid) {
         this.oid = oid;
     }
-
-	 
 }

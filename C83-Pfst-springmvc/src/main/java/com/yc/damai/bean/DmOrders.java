@@ -1,4 +1,4 @@
-package com.yc.damaibean;
+package com.yc.damai.bean;
 
 import java.sql.Timestamp;
 import java.util.Date;

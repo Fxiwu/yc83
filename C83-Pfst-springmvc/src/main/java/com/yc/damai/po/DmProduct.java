@@ -1,4 +1,4 @@
-package  com.yc.damaibean;
+package com.yc.damai.po;
 
 import java.sql.Timestamp;
 
@@ -20,19 +20,8 @@ public class DmProduct {
     private Timestamp createtime;
 
     private Integer cid;
-    
-    private  DmCategory dmcategory;
-    
 
-    public DmCategory getDmcategory() {
-		return dmcategory;
-	}
-
-	public void setDmcategory(DmCategory dmcategory) {
-		this.dmcategory = dmcategory;
-	}
-
-	public Integer getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -103,12 +92,4 @@ public class DmProduct {
     public void setCid(Integer cid) {
         this.cid = cid;
     }
-
-	@Override
-	public String toString() {
-		return "DmProduct [id=" + id + ", pname=" + pname + ", marketPrice=" + marketPrice + ", shopPrice=" + shopPrice
-				+ ", image=" + image + ", pdesc=" + pdesc + ", isHot=" + isHot + ", createtime=" + createtime + ", cid="
-				+ cid + "]";
-	}
-    
 }

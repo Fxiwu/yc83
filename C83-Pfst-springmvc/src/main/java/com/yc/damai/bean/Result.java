@@ -1,4 +1,4 @@
-package com.yc.damaibean;
+package com.yc.damai.bean;
 
 public class Result {
 

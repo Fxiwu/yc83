@@ -9,8 +9,8 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yc.damaibean.DmUser;
-import com.yc.damaibean.Result;
+import com.yc.damai.bean.DmUser;
+import com.yc.damai.bean.Result;
 @RestController
 @RequestMapping("demo")
 public class ValidAction {
