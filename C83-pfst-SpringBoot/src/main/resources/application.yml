@@ -1,7 +1,7 @@
 #yml文件不能使用制表符空格tab，只能用普通空格表示缩进
-#设置使用  空格（值）
+#设置值使用  ：空格(值)
 server:
-  port: 8080
+  port: 80
 
 spring:
   datasource:
