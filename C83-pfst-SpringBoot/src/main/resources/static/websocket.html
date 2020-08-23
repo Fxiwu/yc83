@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+   var websocket;
+   function conn(){
+	   var id=sname.value;
+	   //创建websocket对象
+	   websocket=new WebSocket("ws://localhost/websocket/"+id);
+	   //连接发送错误的回调方法
+	   websocket.onerror=function(){
+		   
+	   };
+	   //连接成功建立回调方法
+	   websocket.onopen=function(event){
+		   alert("connection success!");
+		   console.info(event);
+	   }
+	   //接收到消息的回调方法
+	   websocket.onmessage=function(event){
+		   console.info(event);
+		   alert(event.data);
+ 	   }
+	   //连接关闭的回调方法
+	   websocket.onclose=function(){}
+	   
+   }
+
+   //关闭连接
+   function closeWebSocket(){
+	   websocket.close();
+   }
+   //发送消息
+   function send(){
+	   var msg=content.value;
+	   var id=tname.value;
+	   websocket.send(id+":"+msg);
+   }
+
+</script>
+</head>
+<body>
+    发送者：<input id="sname"><br>
+  接收者：<input id="tname"><br>
+  内容：<input id="content"><br>
+  <button onclick="conn()">连接</button>
+    <button onclick="send()">发送</button>
+  
+</body>
+</html>

@@ -29,6 +29,7 @@ public class IndexAction {
 		m.addAttribute("hlist",hlist);
 		m.addAttribute("Llist",Llist);
 		return "index";
+		//springmvc 会将返回视图名  前template+视图名+hou'zhui
 	}
 	@GetMapping("detail.do")
 	public String detail(Model m,int id) {
