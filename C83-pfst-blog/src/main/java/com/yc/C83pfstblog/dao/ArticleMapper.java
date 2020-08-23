@@ -10,4 +10,7 @@ public interface ArticleMapper {
 
 	@Select("select * from article order by createtime desc")
 	public List<Article> selectBynew();
+	
+	@Select("select * from article where id={id}")
+	 Article  selectById();
 }
