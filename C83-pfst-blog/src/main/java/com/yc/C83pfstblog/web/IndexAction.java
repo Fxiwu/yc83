@@ -26,5 +26,11 @@ public class IndexAction {
 		
 	}
 	
+	@GetMapping("article")
+	public String article(int id ,Model m) {
+		m.addAttribute("article",armapper.selectById(id));
+		return "article";
+	}
+	
 
 }
