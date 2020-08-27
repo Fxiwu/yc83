@@ -1,3 +1,10 @@
 server:    
-  port: 8002
-  
+  port: 8000
+
+spring:
+     application:
+        name:server
+eureka:
+   client:
+       registerWithEureka: false
+       fetchRegistry: false
