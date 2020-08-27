@@ -12,5 +12,18 @@ eureka:
        serviceUrl:
           defaultZone: http://127.0.0.1:8000/eureka
           
-          
-          
+ 
+---
+server:
+    port: 8005
+ # 配置块名
+spring:
+   profiles: user8005        
+       
+---
+server:
+    port: 8006
+ # 配置块名
+spring:
+   profiles: user8006        
+        
