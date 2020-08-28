@@ -43,6 +43,12 @@
 		    <groupId> org.springframework.cloud </groupId >
 		    <artifactId > spring-cloud-starter-openfeign </artifactId >
 		</dependency >
+		
+		<!-- 定义降级服务组件依赖 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+		</dependency>
 	</dependencies>
 	
 	<dependencyManagement>
