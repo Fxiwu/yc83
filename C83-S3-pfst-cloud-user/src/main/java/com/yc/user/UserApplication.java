@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -11,6 +12,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  
 @EnableEurekaClient
 @SpringBootApplication
+//开启声明式服务调用
+@EnableFeignClients
 public class UserApplication implements WebMvcConfigurer{
 	 
 
@@ -18,9 +21,9 @@ public class UserApplication implements WebMvcConfigurer{
 			SpringApplication.run(UserApplication.class, args);
 		}
 		
-		//定义RestTemplate Bean
+		
 		@LoadBalanced
-		@Bean 
+		@Bean //定义RestTemplate Bean
 		public RestTemplate getRestTemplate() {
 			return new RestTemplate();
 		}

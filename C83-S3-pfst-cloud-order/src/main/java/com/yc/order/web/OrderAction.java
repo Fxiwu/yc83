@@ -18,11 +18,21 @@ public class OrderAction {
 		return String.format("server:Order;ip:%s;port:%s",req.getLocalAddr(),req.getLocalPort()) ;
 		 
 	}
-	
+	//RetsTemplate调用
 	@GetMapping("user")
 	public String user() {
 		String url="http://user/user";
 		String res=restTemplate.getForObject(url,String.class);
 		return res;
+	}
+	
+	//声明式服务调用
+	@Resource
+	IUserAction iua;
+	
+	@GetMapping("user1")
+	public String user1() {
+		return iua.user();
+		
 	}
 }

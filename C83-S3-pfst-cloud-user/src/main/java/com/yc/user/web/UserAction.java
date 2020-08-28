@@ -27,4 +27,12 @@ public class UserAction {
 	return res;
 	}
 	
+	//声明式调用
+	@Resource
+	IOrderAction ioa;
+	@GetMapping("order1")
+	public String order1() {
+		 
+	return ioa.order();
+	}
 }
