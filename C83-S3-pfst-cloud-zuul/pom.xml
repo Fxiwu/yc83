@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.yc</groupId>
-  <artifactId>C83-S3-pfst-cloud-order</artifactId>
+  <artifactId>C83-S3-pfst-cloud-zuul</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 <parent>
 		<groupId>org.springframework.boot</groupId>
@@ -38,27 +38,12 @@
  			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
  		</dependency>
 		 
-	<!--   声明式服务调用Feign依赖 -->
-		<dependency>
-		    <groupId> org.springframework.cloud </groupId >
-		    <artifactId > spring-cloud-starter-openfeign </artifactId >
-		</dependency >
-		
-		<!-- 定义降级服务组件依赖 -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-		</dependency>
-		
-		<!-- Redis 共享会话 -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-redis</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.session</groupId>
-			<artifactId>spring-session-data-redis</artifactId>
-		</dependency>
+		 <!--服务网关-->
+		 <dependency>
+ 			<groupId>org.springframework.cloud</groupId>
+ 			<artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+ 		</dependency>
+	 
 	</dependencies>
 	
 	<dependencyManagement>

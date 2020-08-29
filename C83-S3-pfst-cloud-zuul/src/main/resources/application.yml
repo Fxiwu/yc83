@@ -1,0 +1,84 @@
+server:    
+  port: 80
+# 定义当前服务名
+spring:
+   application:
+     name: zuul
+
+# 配置Eureka 服务器的地址
+eureka:
+  client:
+       serviceUrl:
+          defaultZone: http://127.0.0.1:8000/eureka
+         
+#zuul 路由配置
+# http://es3/user/user   ==>   http://es1:8001/user
+# http://es3/order/order ==>   http://es1:8002/order
+
+zuul:
+  # 后面不定义配置参数, 表示 无敏感头 ==> 空集合
+  # 全局敏感头设定
+  sensitiveHeaders:
+  routes:
+    # 忽略路由
+     #ignoredServices: '*'
+     
+      # 默认忽略所有的服务, 除了单独配置的路由
+     #ignoredServices: '*'
+    #忽略指定路径的路由
+    
+     ignoredPatterns: /simple/**
+    # 路由名(简单路由)
+     simple:
+       # 映射地址
+       path: /simple/163
+       # 简单路由 url 地址 使用  http 和 https 开头的地址
+       url: http://www.163.com
+
+    # 路由名(跳转路由)  跳转到当前项目的某个action方法
+     forward:
+       # 映射地址
+       path: /forward/**
+       # 使用forward:开头
+       url: forward:/test
+  
+  # 路由名(Ribbon路由)
+     user:
+      # 对应接口的地址  /** 表示所有的接口(包含子目录)
+       path: /user/**
+       serviceId: user
+      # 敏感头设置,  数据类型是集合
+      # sensitiveHeaders: Authorization
+      # 后面不定义配置参数, 表示 无敏感头 ==> 空集合
+    #   sensitiveHeaders:
+
+    # 路由名(Ribbon路由)
+     #order:
+      # 对应接口的地址  /** 表示所有的接口(包含子目录)
+        #path: /odr/**
+      # 路由名与服务名一致, 可以省略服务名配置
+      #serviceId: order
+       # Ribbon 格式三
+    # order: /odr/**
+
+    # Ribbon 格式四 ==> Zuul会将 注册服务器中的 服务名直接映射成路由
+    # order ==  order.path=order/**
+
+    #  默认路由
+    # http://127.0.0.1/  ==> http://www.hyycinfo.com
+    # http://127.0.0.1/test/test  ==> http://www.hyycinfo.com/test/test 404
+     
+     legacy:
+       path: /**
+       url: http://www.hyycinfo.com
+       
+hystrix:
+   command:
+      default:
+         execution:
+            isolation:
+               thread:
+                  timeoutInMilliseconds: 60000
+ribbon:
+  ConnectTimeout: 3000
+  ReadTimeout: 60000
